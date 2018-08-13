@@ -1,0 +1,8 @@
+SELECT * FROM DZ2 AS T1
+WHERE data = (SELECT max(data) FROM DZ2 AS T2 WHERE T1.Name = T2.Name)
+GROUP BY Name
+
+select Name, data
+from DZ2 where (Name, data) in ( 
+select Name, max(data) as date from DZ2 group by Name)
+group by Name
