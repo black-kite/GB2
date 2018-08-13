@@ -1,7 +1,4 @@
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.Scanner;
 
 public class Main {
@@ -84,7 +81,7 @@ public class Main {
 
     }
 
-    public static void printTable(String tableName) throws Exception {
+    public static void printTable(String tableName) throws SQLException {
         ResultSet res = st.executeQuery("SELECT * FROM " + tableName);
         while (res.next()) {
             System.out.println(
@@ -96,7 +93,7 @@ public class Main {
         }
     }
 
-    public static void initializeTable(int tableSize) throws Exception {
+    public static void initializeTable(int tableSize) throws SQLException{
         st.execute("CREATE TABLE IF NOT EXISTS Products (\n" +
                 "    ID    INTEGER PRIMARY KEY AUTOINCREMENT, \n" +
                 "    PRODID INTEGER, \n" +
@@ -120,7 +117,7 @@ public class Main {
         connection.setAutoCommit(true);
     }
 
-    public static void printTable(String tableName, int start, int end) throws Exception {
+    public static void printTable(String tableName, int start, int end) throws SQLException {
         ResultSet res = st.executeQuery("SELECT * FROM " + tableName + " WHERE cost>= " + start + " AND cost<= " + end);
         while (res.next()) {
             System.out.println(
